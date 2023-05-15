@@ -10,4 +10,9 @@ public class AnotherChildClass extends ParentClass {
         int a = 3;
         int c = 3/0;
     }
+
+    @Override
+    public void processDataWithoutException() throws IndexOutOfBoundsException{
+        throw new IndexOutOfBoundsException();
+    }
 }
