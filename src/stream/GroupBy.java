@@ -27,13 +27,18 @@ public class GroupBy {
             return book.getAuthor();
         }));
 
+        System.out.println(bookByAuthor);
         Map<Integer , List<Book>> bookByRating =  books.stream().collect(groupingBy(book -> {
             return book.getRatings();
         }));
+        System.out.println(bookByRating);
+
 
         Map<String , List<Book>> bookByNameAuthor =  books.stream().collect(groupingBy(book -> {
             return (book.getBookName() + "-" + book.getAuthor());
         }));
+
+        System.out.println(bookByNameAuthor);
 
 
         bookByAuthor.get("JK").stream().forEach(book -> System.out.println(book));
