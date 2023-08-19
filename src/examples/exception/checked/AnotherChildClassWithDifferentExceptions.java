@@ -10,7 +10,7 @@ public class AnotherChildClassWithDifferentExceptions extends ParentClass {
         int c = 3/0;
     }*/
 
-    /*@Override
+   /* @Override
     public void processDataWithException() throws ClassNotFoundException {
         List<Integer> nums =  Arrays.asList(3,6,8);
         nums.get(3);
