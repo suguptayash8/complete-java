@@ -11,40 +11,45 @@ public class OptionalMethods {
          * empty message
          */
         Optional<String> message = Optional.empty();
-        if("random".equals(message.orElse("random"))){
-            System.out.println("Or Else give optional value if it is there or else it will return value in or Else");
+
+        if("empty".equals(message.orElse("empty"))){
+            System.out.println("1. Or Else give optional value if it is there or else it will return value in or Else");
         };
 
 
         Optional<String> messageA = Optional.of("present");
         if("present".equals(messageA.orElse("not present"))){
-            System.out.println("Printing present value and or else value will be not used");
+            System.out.println("2. Printing present value and or else value will be not used");
         }
 
 
         /**
-         * getting message from supplie
+         * getting message from supplier
          */
         Optional<String> messageC = Optional.ofNullable(null);
         if("supplier".equals(messageC.orElseGet(()-> "supplier"))){
-            System.out.println("Getting message from supplier");
+            System.out.println("3. Getting message from supplier");
         }
 
 
         try {
             Optional<String> messageD = Optional.ofNullable(null);
             if("message".equals(messageD.orElseThrow(()-> new NullPointerException()))){
-
             }
         }catch (NullPointerException e){
-            System.out.println(e.getMessage());
+            System.out.println("4. " + e.getMessage());
         }
 
+        Optional<Integer> age = Optional.ofNullable(null);
+        age.filter(num -> num > 16 ).ifPresent((num)-> System.out.println("5. " + num));
+        age.filter( num -> num > 18).ifPresentOrElse((num)-> System.out.println("6. successfully passed"),
+                ()-> System.out.println("7. failed to pass the age criteria"));
 
-        /***
-         * [1-->2]
-         */
+        System.out.println("7. " + age.map((num)-> num == 8 ? num + 2: num).filter(num-> num > 10).orElse(-1));
 
+        if(age.isPresent()){
+            age.get();
+        }
 
 
     }
