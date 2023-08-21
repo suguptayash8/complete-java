@@ -23,10 +23,6 @@ public class MultiThread {
         //Collections.sort(Student.mockStudentList());
 
         //approach2
-        Student.mockStudentList().stream().sorted((stdA, stdB) -> {
-            return stdA.name.compareTo(stdB.name) != 0 ? stdA.name.compareTo(stdB.name)
-                    : stdB.totalMarks > stdA.totalMarks ? 1 : -1;
-        }).collect(Collectors.toList());
     }
 }
 class A {
@@ -48,22 +44,3 @@ class C extends B {
     }
 }
 
-class Student {
-    String name;
-    Integer totalMarks;
-
-    Student(String name, Integer totalMarks){
-        this.name  = name;
-        this.totalMarks = totalMarks;
-    }
-
-    static List<Student> mockStudentList(){
-        Student A = new Student("Shubham", 100);
-        Student B = new Student("Shubham", 90);
-        Student C = new Student("kamal", 70);
-        Student D = new Student("sharukh",  60);
-        Student E = new Student("sharukh", 50);
-        Student F = new Student("Ajay", 70);
-        return Arrays.asList(A,B,C,D,E,F);
-    }
-}

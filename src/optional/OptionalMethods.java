@@ -1,6 +1,7 @@
 package optional;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class OptionalMethods {
 
@@ -9,10 +10,10 @@ public class OptionalMethods {
         /**
          * Empty Optional
          * empty message
+         *
          */
         Optional<String> message = Optional.empty();
-
-        if("empty".equals(message.orElse("empty"))){
+        if("else".equals(message.orElse("else"))){
             System.out.println("1. Or Else give optional value if it is there or else it will return value in or Else");
         };
 
@@ -32,6 +33,8 @@ public class OptionalMethods {
         }
 
 
+
+
         try {
             Optional<String> messageD = Optional.ofNullable(null);
             if("message".equals(messageD.orElseThrow(()-> new NullPointerException()))){
@@ -40,9 +43,9 @@ public class OptionalMethods {
             System.out.println("4. " + e.getMessage());
         }
 
-        Optional<Integer> age = Optional.ofNullable(null);
+        Optional<Integer> age = Optional.ofNullable(20);
         age.filter(num -> num > 16 ).ifPresent((num)-> System.out.println("5. " + num));
-        age.filter( num -> num > 18).ifPresentOrElse((num)-> System.out.println("6. successfully passed"),
+        age.filter( num -> num > 30).ifPresentOrElse((num)-> System.out.println("6. successfully passed"),
                 ()-> System.out.println("7. failed to pass the age criteria"));
 
         System.out.println("7. " + age.map((num)-> num == 8 ? num + 2: num).filter(num-> num > 10).orElse(-1));
