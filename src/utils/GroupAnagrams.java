@@ -1,10 +1,9 @@
 package utils;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 public class GroupAnagrams {
 
     public static void main(String[] args){
-        groupAnagram(Arrays.asList("face", "caffe", "cafe", "milk", "limk", "abc"));
+        groupByAnagrams(Arrays.asList("Face", "Cafe", "Milk", "Limk", "abc", "bac", "cab"));
     }
 
     public static void groupAnagram(List<String> words){
@@ -21,7 +20,6 @@ public class GroupAnagrams {
         HashMap<String, List<String>> groupedAnagrams = new HashMap<>();
         words.stream().forEach((wordA) -> {
             String sortedWord = wordA.toLowerCase().chars().mapToObj((ch)->String.valueOf(ch)).sorted().collect(Collectors.joining());
-
             if(groupedAnagrams.get(sortedWord) == null){
                 List<String> ans = new ArrayList<>();
                 ans.add(wordA);
@@ -30,8 +28,26 @@ public class GroupAnagrams {
                 groupedAnagrams.get(sortedWord).add(wordA);
             }
         });
+        groupedAnagrams.values().stream().forEach(System.out::println);
+    }
+
+    public static void groupByAnagrams(List<String> words){
+        Function<String, String> mapKey = (wrd) -> {
+            return wrd.toLowerCase().chars().mapToObj((ch)-> String.valueOf(ch)).sorted().collect(Collectors.joining());
+        };
+
+        Function<String, List<String>> mapValue = (wrd) -> {
+            List <String> wrds = new ArrayList<>();
+            wrds.add(wrd);
+            return wrds;
+        };
+
+        BinaryOperator<List<String>> merge = (existing, replacing)-> {
+            existing.addAll(replacing);
+            return existing;
+        };
+        Map<String, List<String>> groupedAnagrams = words.stream().collect(Collectors.toMap(mapKey, mapValue, merge));
 
         groupedAnagrams.values().stream().forEach(System.out::println);
-
     }
 }
