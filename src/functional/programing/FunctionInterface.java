@@ -2,12 +2,14 @@ package functional.programing;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class FunctionInterface {
 
     public static void main (String[] args){
+
 
         Function<List<String>, List<String>> processData = (List<String> inp) -> {
             return inp.stream().map(str->{
