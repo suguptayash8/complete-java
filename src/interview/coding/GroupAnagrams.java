@@ -1,4 +1,4 @@
-package utils;
+package interview.coding;
 
 
 import java.util.*;

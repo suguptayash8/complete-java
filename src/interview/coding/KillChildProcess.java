@@ -1,12 +1,10 @@
-package utils;
+package interview.coding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Queue;
-import java.util.stream.Collectors;
 
-public class Main {
+public class KillChildProcess {
 
     /**
      * Input: pid = [1,3,10,5], ppid = [3,0,5,3], kill = 5
@@ -20,19 +18,6 @@ public class Main {
         int []sol = unixProcessesToKill(new int[]{1,3,10,5}, new int[]{3,0,5,3}, 3);
 
         Arrays.stream(sol).map(Obj-> Integer.valueOf(Obj)).forEach(System.out::println);
-    }
-    public static int calculateSumOfElementsInAnIntArrayRecursively(int[] input) {
-        return recursiveSummnation(input, 0);
-
-    }
-
-
-    public static int recursiveSummnation(int[] inp, int index){
-        if(index >= inp.length){
-            return 0;
-        }
-
-        return  inp[index] + recursiveSummnation(inp, ++index);
     }
 
     public static int[] unixProcessesToKill(int[] pids, int[] ppids, int kill){
