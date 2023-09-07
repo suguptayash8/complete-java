@@ -51,14 +51,15 @@ public class Book {
     }
 
     public static List<Book> getBooks(){
-        Book HP = new Book("Harry Potter", "JK", 4 );
-        Book HP2 = new Book("Harry Potter", "JK", 5 );
-        Book google = new Book("Google", "lary", 4 );
-        Book chrome = new Book("chrome", "lary", 1 );
-        Book science = new Book("science", "verma", 4 );
-        Book science2 = new Book("science", "einstien", 3 );
-        Book science3 = new Book("science", "verma", 5  );
+        Book harry = new Book("Harry Potter", "JK Rowlings", 5 );
+        Book hogwarts = new Book("Hogwarts", "JK Rowlings", 4 );
+        Book troubled = new Book("Troubled blood", "JK Rowlings", 4 );
+        Book google = new Book("Google", "Larry Page", 4 );
+        Book chrome = new Book("Chrome", "Larry Page", 3 );
+        Book physics = new Book("Concept of Physics", "HC Verma", 4 );
+        Book physicsFoundation = new Book("Foundation of Physics", "HC Verma", 5);
+        Book science = new Book("Science", "HC Verma", 4);
 
-        return Arrays.asList(HP, HP2, google, chrome, science, science2, science3);
+        return Arrays.asList(harry, hogwarts, troubled, google, chrome, physics, physicsFoundation, science);
     }
 }

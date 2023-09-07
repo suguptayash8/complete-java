@@ -5,6 +5,7 @@ import utils.Book;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -27,27 +28,32 @@ public class GroupBy {
             return book.getAuthor();
         }));
 
-        System.out.println(bookByAuthor);
-        Map<Integer , List<Book>> bookByRating =  books.stream().collect(groupingBy(book -> {
-            return book.getRatings();
+
+        bookByAuthor.entrySet().stream().forEach(printBooks("authorName"));
+
+        Map<String , List<Book>> bookByRating =  books.stream().collect(groupingBy(book -> {
+            return String.valueOf(book.getRatings());
         }));
-        System.out.println(bookByRating);
+        //bookByRating.entrySet().stream().forEach(printBooks("byRatings"));
 
 
-        Map<String , List<Book>> bookByNameAuthor =  books.stream().collect(groupingBy(book -> {
-            return (book.getBookName() + "-" + book.getAuthor());
+        Map<String , List<Book>> bookbyAuthorAndRatings =  books.stream().collect(groupingBy(book -> {
+            return (book.getAuthor() + "-" + book.getRatings());
         }));
+        //bookbyAuthorAndRatings.entrySet().stream().forEach(printBooks("byAuthorAndRating"));
+    }
 
-        System.out.println(bookByNameAuthor);
+    public static Consumer printBooks(String aggregationKey){
+        Consumer<Map.Entry<String, List<Book>>> printBooks = (entry)-> {
+            System.out.println("{ " + "\n" +
+                    aggregationKey + ": " + entry.getKey() + ",\n" +
+                    "bookName: " + entry.getValue().stream().map(book-> book.getBookName() + " ").collect(Collectors.toList()) + ",\n" +
+                    "ratings: " + entry.getValue().stream().map(book-> book.getRatings() + " ").collect(Collectors.toList()) + "\n" +
+                    "}"
+            );
+        };
 
-
-        bookByAuthor.get("JK").stream().forEach(book -> System.out.println(book));
-
-        System.out.println("By ratings ");
-        bookByRating.get(4).stream().forEach(book -> System.out.println(book));
-
-        System.out.println("By name and author");
-        bookByNameAuthor.get("science-verma").stream().forEach(book -> System.out.println(book));
+        return printBooks;
     }
 }
 
