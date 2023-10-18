@@ -26,10 +26,9 @@ public class AllPermutation {
         return findAllPermutations(inp.toCharArray(), 0);
     }
     public static List<String> findAllPermutations(char[] inp, int start){
-
         List<String> sol = new ArrayList<>();
 
-        if(start == inp.length -1){
+        if(start == inp.length-1){
             String perm = "";
             for(char c: inp){
                 perm = perm + c;
@@ -43,7 +42,6 @@ public class AllPermutation {
             char[] swapped = swapChar(inp, start, i);
             sol.addAll(findAllPermutations(swapped, start + 1));
         }
-
         return sol;
     }
 
@@ -53,7 +51,6 @@ public class AllPermutation {
         char tmp = swapp[i];
         swapp[i] = swapp[j];
         swapp[j] = tmp;
-
         return swapp;
     }
 }

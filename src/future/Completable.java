@@ -95,8 +95,8 @@ public class Completable {
 
 
     public static void main(String []args) throws ExecutionException, InterruptedException {
-        //testRunAsync();
+        testRunAsync();
         //testSupplyAsync();
-        processMultipleTask();
+        //processMultipleTask();
     }
 }

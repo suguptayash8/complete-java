@@ -24,12 +24,12 @@ public class GroupBy {
 
         List<Book> books = Book.getBooks();
 
+
         Map<String , List<Book>> bookByAuthor =  books.stream().collect(groupingBy(book -> {
             return book.getAuthor();
         }));
+        //bookByAuthor.entrySet().stream().forEach(printBooks("authorName"));
 
-
-        bookByAuthor.entrySet().stream().forEach(printBooks("authorName"));
 
         Map<String , List<Book>> bookByRating =  books.stream().collect(groupingBy(book -> {
             return String.valueOf(book.getRatings());
@@ -40,7 +40,7 @@ public class GroupBy {
         Map<String , List<Book>> bookbyAuthorAndRatings =  books.stream().collect(groupingBy(book -> {
             return (book.getAuthor() + "-" + book.getRatings());
         }));
-        //bookbyAuthorAndRatings.entrySet().stream().forEach(printBooks("byAuthorAndRating"));
+        bookbyAuthorAndRatings.entrySet().stream().forEach(printBooks("byAuthorAndRating"));
     }
 
     public static Consumer printBooks(String aggregationKey){

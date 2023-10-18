@@ -50,6 +50,7 @@ public class OptionalMethods {
 
         System.out.println("7. " + age.map((num)-> num == 8 ? num + 2: num).filter(num-> num > 10).orElse(-1));
 
+        boolean isOld = age.map((num)-> num > 60 ? true : false).orElse(false);
         if(age.isPresent()){
             age.get();
         }
