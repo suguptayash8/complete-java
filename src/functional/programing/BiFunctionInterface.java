@@ -6,6 +6,11 @@ import java.util.function.Function;
 public class BiFunctionInterface {
 
     public static void main(String []args){
+        biFuncInt();
+        biFuncIntChain();
+    }
+
+    public static void biFuncInt(){
         BiFunction<Integer, Integer, Boolean> isDivisible = (intA, intB) -> {
             if(intA % intB == 0){
                 return true;
@@ -14,18 +19,26 @@ public class BiFunctionInterface {
             }
         };
 
-        System.out.println(isDivisible.apply(27, 9));
+        System.out.println(isDivisible.apply(18,6));
+    }
 
-        BiFunction<String, String, String> combineStringByHyphen = (strA, strB)->{
-            return new StringBuilder(strA).append("-").append(strB).toString();
-        };
-
-        Function<String, Boolean> isUpdated = (str)->{
-            if(str.contains("-")){
-                return true;
+    public static void biFuncIntChain(){
+        BiFunction<Integer, Integer, String> anyalyzeInvestment = (investedValue, currValue) -> {
+            if(currValue > investedValue){
+                return "profit";
             }
-            return  false;
+            return "loss";
         };
-        System.out.println(combineStringByHyphen.andThen(isUpdated).apply("first", "second"));
+
+        Function<String, String> giveAdvice = (str) -> {
+            if("profit".equals(str)){
+                return "over all you are making profit";
+            }else if("loss".equals(str)){
+                return "over all you are in loss";
+            }
+            return "no investment to show";
+        };
+
+        System.out.println(anyalyzeInvestment.andThen(giveAdvice).apply(38475, 764593));
     }
 }
