@@ -9,43 +9,36 @@ import java.util.stream.Collectors;
 public class ConsumerInterface {
 
     public static void main(String[] args){
-        Consumer<List<String>> splitByHyphen = (List<String> inp)->{
-            for(int i = 0; i < inp.size(); i++){
+        consumerInterface();
+        consumerInterfaceChain();
+    }
 
-                String[] splitString = inp.get(i).split("-");
-                String out = "";
-                for (String word: splitString) {
-                    out = out + " " + word;
-                }
-
-                inp.set(i, out);
-            }
+    public static void consumerInterface(){
+        Consumer<String> printData = (str)->{
+            System.out.println("\n" + "Inside " + new Object(){}.getClass().getEnclosingMethod().getName());
+            System.out.println(str);
         };
 
-        Consumer<List<String>> populateData = (List<String> inp)->{
+        printData.accept("print this string, inside: "
+                + new Object(){}.getClass().getEnclosingMethod().getName());
+    }
+
+    public static void consumerInterfaceChain(){
+        Consumer<List<String>> populateRestData = (inp)->{
             /**
-             * we can write logic to fetch from data base or rest
+             * lets say you fetch data from rest
              */
-            inp.add("IT-SE");
-            inp.add("IT-Electronics");
-            inp.add("Space-Aerodynamics");
-            inp.add("Space-Sateallite");
+            List<String> restData = Arrays.
+                    asList("item: laptop", "item-mobile", "item-smartwatch");
+            inp.addAll(restData);
         };
 
-        Consumer<List<String>> massageData = (List<String> inp)->{
-
-           for(int i = 0; i < inp.size(); i++){
-               inp.set(i, inp.get(i)+"-"+"field");
-           }
-        };
-
-        Consumer<List<String>> logData = (List<String> inp) -> {
+        Consumer<List<String>> printData = (inp)->{
+            System.out.println( "\n" + "inside " + new Object(){}.getClass().getEnclosingMethod().getName());
             inp.stream().forEach(System.out::println);
         };
 
-        List<String> inp = new ArrayList<>();
-
-        populateData.andThen(massageData).andThen(splitByHyphen).andThen(logData).accept(inp);
+        populateRestData.andThen(printData).accept(new ArrayList<>());
 
     }
 }

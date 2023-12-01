@@ -1,5 +1,6 @@
 package functional.programing;
 
+import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 

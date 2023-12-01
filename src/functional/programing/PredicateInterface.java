@@ -1,10 +1,15 @@
 package functional.programing;
 
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class PredicateInterface {
-
     public static void main(String []args){
+        predicateInt();
+        biPredicateInt();
+    }
+
+    public static void predicateInt(){
         Predicate<Integer> isEven = (num)-> {
             if(num % 2 == 0){
                 return true;
@@ -36,7 +41,16 @@ public class PredicateInterface {
 
         //System.out.println("isEvenOrOldAge " + isEven.or(isOldAge).test(23));
         //System.out.println("isYoungAndEven " + isEven.and(isOldAge.negate()).test(28));
+    }
+    public static void biPredicateInt(){
+        BiPredicate<String, Integer> testStringLength = (str, num)->{
+            if(str.length() > num){
+                return true;
+            }
+            return false;
+        };
 
+        testStringLength.test("test this string", 8);
     }
 
 }
