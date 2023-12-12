@@ -9,6 +9,12 @@ public class PredicateInterface {
         biPredicateInt();
     }
 
+    public static void test(int age){
+        if(age % 2 == 0 && age <= 60){
+
+        }
+    }
+
     public static void predicateInt(){
         Predicate<Integer> isEven = (num)-> {
             if(num % 2 == 0){
@@ -30,12 +36,13 @@ public class PredicateInterface {
 
 
         Predicate isEvenAndOld = isEven.and(isOldAge);
+
         //System.out.println("isEvenAndOld " +  isEvenAndOld.test(73));
         //System.out.println("isEvenAndOld " +  isEvenAndOld.test(74));
 
 
         Predicate<Integer> isOddAndOldAge = isEven.negate().and(isOldAge);
-        //System.out.println("isOddAndOldAge " +  isOddAndOldAge.test(73));
+        System.out.println("isOddAndOldAge " +  isOddAndOldAge.test(73));
         //System.out.println("isOddAndOldAge " +  isOddAndOldAge.test(74));
 
 

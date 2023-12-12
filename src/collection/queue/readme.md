@@ -15,4 +15,14 @@
                               __________________________________________     ArrayDeque(C)
                               |                      |                 |
                               |                      |                 |
-                       ArrayBlockingQueue(C) LinkedBlockingQueue(C)   PriorityBlockingQueue(C)
+                       ArrayBlockingQueue(C) LinkedBlockingQueue(C)   PriorityBlockingQueue(C
+
+
+
+                          Methods
+                             |
+                             |
+                    ---------------------
+                    |        |          |
+                    |        |          | 
+                 Offer      Peek       Poll

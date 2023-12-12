@@ -1,7 +1,7 @@
 package functional.programing;
 
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
+
 
 public class BiConsumerInterface {
 

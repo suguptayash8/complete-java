@@ -39,6 +39,5 @@ public class ConsumerInterface {
         };
 
         populateRestData.andThen(printData).accept(new ArrayList<>());
-
     }
 }
