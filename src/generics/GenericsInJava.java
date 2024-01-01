@@ -22,6 +22,8 @@ import java.util.concurrent.Future;
  *     5. wild cards in generics
  */
 public class GenericsInJava<T extends Thread&Callable> {
+    T variable=null;
+
     List<T> threads;
 
     private static ExecutorService executorService = Executors.newFixedThreadPool(5);
@@ -93,11 +95,11 @@ class CustomNode<T> {
 
 
     public void lowerBoundWildCard(List<? extends Number> num){
+        System.out.println(num.stream().findFirst().get() instanceof Integer);
 
     }
 
     public void UpperBoundWildCard(List<? super Integer> num){
-
     }
 
 }
@@ -108,7 +110,7 @@ class TypeSafety {
         List sample = new ArrayList();
         sample.add("string");
 
-        Integer num = (Integer) sample.get(0);
+        //Integer num = (Integer) sample.get(0);
     }
 
     public static void checkedInCompileTime(){
